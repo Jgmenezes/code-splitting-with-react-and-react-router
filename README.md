@@ -1,1 +1,1 @@
-App for test code splitting using React.lazy, React.Suspense and React Router
+App for test code splitting using ```javascript React.lazy```, ```javascript React.Suspense``` and ```javascript react-router-dom```
