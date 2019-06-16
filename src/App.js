@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import Menu from './components/Menu';
+const FirstComponent = lazy(() => import('./components/FirstComponent'));
+const SecondComponent = lazy(() => import('./components/SecondComponent'));
+const ThirdComponent = lazy(() => import('./components/ThirdComponent'));
+const FourthComponent = lazy(() => import('./components/FourthComponent'));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Router>
+        <Menu />
+        <Switch>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Route exact path="/" component={FirstComponent} />
+            <Route path="/second" component={SecondComponent} />
+            <Route path="/third" component={ThirdComponent} />
+            <Route path="/fourth" component={FourthComponent} />
+          </Suspense>
+        </Switch>
+      </Router>
+    </Fragment>
   );
 }
 
